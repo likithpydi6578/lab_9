@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Student Details</h2>
+    <button onclick="loadXMLDoc()">Load Student Data</button>
+    <br><br>
+
+    <table id="studentTable">
+        <tr>
+            <th>Roll No.</th>
+            <th>Name</th>
+            <th>Marks</th>
+        </tr>
+    </table>
+
+    <script>
+        function loadXMLDoc() {
+            var xhttp = new XMLHttpRequest();
+            
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    displayData(this);
+                }
+            };
+            
+            // Pointing to the new students.xml file
+            xhttp.open("GET", "students.xml", true);
+            xhttp.send();
+        }
+
+        function displayData(xml) {
+            var xmlDoc = xml.responseXML;
+            var table = document.getElementById("studentTable");
+            
+            // Get all <student> tags
+            var students = xmlDoc.getElementsByTagName("student");
+
+            for (var i = 0; i < students.length; i++) {
+                var rollno = students[i].getElementsByTagName("rollno")[0].childNodes[0].nodeValue;
+                var name = students[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+                var marks = students[i].getElementsByTagName("marks")[0].childNodes[0].nodeValue;
+
+                var row = "<tr>" +
+                            "<td>" + rollno + "</td>" +
+                            "<td>" + name + "</td>" +
+                            "<td>" + marks + "</td>" +
+                          "</tr>";
+                
+                table.innerHTML += row;
+            }
+        }
+    </script>
+
+</body>
+</html>

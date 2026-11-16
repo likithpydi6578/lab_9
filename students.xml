@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<school>
+    <student>
+        <rollno>1</rollno>
+        <name>Ananya Rao</name>
+        <marks>92</marks>
+    </student>
+    <student>
+        <rollno>2</rollno>
+        <name>Rohan Das</name>
+        <marks>85</marks>
+    </student>
+    <student>
+        <rollno>3</rollno>
+        <name>Sneha Nair</name>
+        <marks>95</marks>
+    </student>
+</school>
