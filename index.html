@@ -45,7 +45,6 @@
                 }
             };
             
-            // Pointing to the new students.xml file
             xhttp.open("GET", "students.xml", true);
             xhttp.send();
         }
@@ -54,7 +53,9 @@
             var xmlDoc = xml.responseXML;
             var table = document.getElementById("studentTable");
             
-            // Get all <student> tags
+            // Clears the old rows so clicking the button again won't duplicate data
+            table.innerHTML = "<tr><th>Roll No.</th><th>Name</th><th>Marks</th></tr>";
+            
             var students = xmlDoc.getElementsByTagName("student");
 
             for (var i = 0; i < students.length; i++) {
